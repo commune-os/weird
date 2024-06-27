@@ -1,4 +1,4 @@
-FROM node:20 as build
+FROM node:20 AS build
 RUN npm i -g pnpm
 COPY . /project
 WORKDIR /project
@@ -8,6 +8,6 @@ FROM node:20
 COPY --from=build /project/build /project
 RUN useradd weird
 RUN echo '{"type": "module"}' > /project/package.json
-RUN chown -R weird:weird /project 
+RUN chown -R weird:weird /project
 USER weird
 CMD ["node", "/project"]

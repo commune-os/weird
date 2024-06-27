@@ -65,8 +65,7 @@ This way your users literally just have to put in the URL to the Weird instance,
 ## Forgejo
 
 > **Note:** Because Forgejo 7 does not support PKCE, and it was only recently implemented, you need
-> to use the experimental Forgejo 8 build for now. See [this Forgejo
-> issue](https://codeberg.org/forgejo/forgejo/issues/2766#issuecomment-1807493).
+> to use the experimental Forgejo 8 build for now. See [this Forgejo issue](https://codeberg.org/forgejo/forgejo/issues/2766#issuecomment-1807493).
 
 Here's a specific guide to setting up Weird login on a Forgejo instance.
 

@@ -8,6 +8,6 @@ export default defineConfig({
 	plugins: [wasm(), topLevelAwait(), sveltekit()],
 	server: {
 		port: 9523,
-		strictPort: true,
+		strictPort: true
 	}
 });

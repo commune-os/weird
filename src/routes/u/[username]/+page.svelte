@@ -51,7 +51,7 @@
 				{/if}
 				{#if profile.links}
 					{#each profile.links as link}
-						<a class="btn variant-ghost" href={link.url}>
+						<a class="variant-ghost btn" href={link.url}>
 							{link.label || link.url}
 						</a>
 					{/each}
@@ -100,7 +100,7 @@
 	</main>
 {:else}
 	<main class="flex flex-col items-center">
-		<aside class="alert variant-ghost-error w-80 mt-8">
+		<aside class="alert variant-ghost-error mt-8 w-80">
 			<div class="alert-message">
 				<p>Error loading user: {profile.error}</p>
 			</div>

@@ -16,12 +16,21 @@ jobs:
         with:
           tool: typos-cli
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
       - name: Show version information
         shell: bash
         run: |
           just --version
           dprint --version
           typos --version
+          pnpm --version
 
       - name: Lint codebase
         shell: bash

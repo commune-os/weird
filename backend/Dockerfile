@@ -1,4 +1,4 @@
-FROM  messense/rust-musl-cross:x86_64-musl as build
+FROM messense/rust-musl-cross:x86_64-musl AS build
 COPY . /home/rust/src
 RUN --mount=type=cache,target=/home/rust/src/target \
     --mount=type=cache,target=/root/.cargo/registry \

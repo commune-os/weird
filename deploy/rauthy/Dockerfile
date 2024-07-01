@@ -3,4 +3,3 @@ FROM scratch
 COPY --from=rauthy /app/rauthy /
 COPY --from=rauthy /app/rauthy.cfg /
 CMD "/idontexist"
-

@@ -1,0 +1,40 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  code_quality:
+    name: Code quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - uses: taiki-e/install-action@just
+      - uses: taiki-e/install-action@dprint
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: typos-cli
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: |
+          pnpm install
+
+      - name: Show version information
+        shell: bash
+        run: |
+          just --version
+          dprint --version
+          typos --version
+          pnpm --version
+
+      - name: Lint codebase
+        shell: bash
+        run: |
+          just lint
+          just fmt-check
+

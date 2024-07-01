@@ -50,7 +50,7 @@
 	});
 </script>
 
-<main class="flex justify-center items-center pt-8">
+<main class="flex items-center justify-center pt-8">
 	{#if error}
 		<aside class="alert variant-ghost-error min-w-[50%] max-w-3xl">
 			<!-- Message -->

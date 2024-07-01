@@ -11,10 +11,7 @@
 </svelte:head>
 
 <main class="flex flex-col items-center">
-	<form
-		class="card mt-12 flex w-[600px] max-w-[90%] flex-col gap-4 p-8"
-		method="post"
-	>
+	<form class="card mt-12 flex w-[600px] max-w-[90%] flex-col gap-4 p-8" method="post">
 		<h1 class="my-3 text-center text-2xl">Leave Feedback or Request Help</h1>
 
 		<p class="text-surface-500-400-token text-center">

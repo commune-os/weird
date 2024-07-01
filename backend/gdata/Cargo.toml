@@ -14,10 +14,10 @@ futures = { version = "0.3.30", default-features = false }
 iroh = { version = "0.18.0", default-features = false }
 quic-rpc = "0.10.1"
 quick_cache = "0.5.1"
+serde = { version = "1.0", features = ["derive"], optional = true }
 smallstr = "0.3.0"
 smallvec = "1.13.2"
 ulid = "1.1.2"
-serde = { version = "1.0", features = ["derive"], optional = true }
 
 [dev-dependencies]
 tokio = "1.38.0"

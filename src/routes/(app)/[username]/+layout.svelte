@@ -14,13 +14,13 @@
 		>
 			<div class="mb-3 flex flex-row items-start justify-between">
 				<h1 class="mb-2 text-xl font-bold">Pages</h1>
-				<button
+				<a
 					title="Add Page"
 					class="variant-ghost btn-icon btn-icon-sm"
-					onclick={() => alert('Coming soon!')}
+					href={`/${$page.params.username}/new`}
 				>
 					<Icon icon="fluent:add-12-filled" font-size="1.5em" />
-				</button>
+				</a>
 			</div>
 
 			<div class="flex flex-col gap-2">

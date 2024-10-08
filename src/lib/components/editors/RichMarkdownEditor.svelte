@@ -69,6 +69,7 @@
 	}
 	div :global(div[contenteditable='true']:focus) {
 		outline: 1px solid white;
+		outline-offset: 0.25em;
 		border-radius: 0.75em;
 	}
 </style>

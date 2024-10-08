@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { getSession } from '$lib/rauthy/server';
-import { ensureUsernameMatchesSessionUserId } from '../utils';
+import { ensureUsernameMatchesSessionUserId } from '../../utils';
 import { createChallenge } from '$lib/dns-challenge';
 import { getProfileById, setCustomDomain } from '$lib/leaf/profile';
 

@@ -1,21 +1,10 @@
-import type { PageServerLoad } from './$types';
-import {
-	profileLinkByUsername,
-	getProfile,
-	listChildren,
-	appendSubpath,
-	setProfileById,
-	setAvatarById,
-	type Profile
-} from '$lib/leaf/profile';
-import { error, type Actions, redirect, fail } from '@sveltejs/kit';
+import { setProfileById, setAvatarById, type Profile } from '$lib/leaf/profile';
+import { type Actions, redirect, fail } from '@sveltejs/kit';
 import { type CheckResponseError } from '$lib/utils/http';
 import { getSession } from '$lib/rauthy/server';
-import { leafClient } from '$lib/leaf';
-import { Name, RawImage } from 'leaf-proto/components';
+import { RawImage } from 'leaf-proto/components';
 import sharp from 'sharp';
 import { env } from '$env/dynamic/public';
-import { fullyQualifiedUsername } from '$lib/utils/username';
 
 export const actions = {
 	default: async ({ fetch, request }) => {

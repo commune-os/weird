@@ -72,6 +72,9 @@
 					</li>
 				</SortableItem>
 			{/each}
+			{#if links.length == 0}
+				<div class="mt-3">No Links</div>
+			{/if}
 		</SortableList>
 	</ul>
 </div>

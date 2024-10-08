@@ -538,10 +538,53 @@ export class RpcClient {
 		}
 	}
 
+	/**
+	 * Allows you to add and delete a list of components with one function call.
+	 *
+	 * The components list is a list of items, each of which is either a component constructor, or a
+	 * component instance.
+	 *
+	 * If it is a component constructor, then the component will be deleted from the entity, if it
+	 * exists. If it is a component instance, then that component will be added to the entity.
+	 *
+	 * This allows you to do easy update / delete on components:
+	 *
+	 * ```ts
+	 * await leafClient.updateComponents(pageLink, [
+	 *     new Name(data.display_name),
+	 *     data.markdown.length > 0 ? new CommonMark(data.markdown) : CommonMark,
+	 * ]);
+	 * ```
+	 *
+	 * @param link the entity to update the components of
+	 * @param components the list of components
+	 * @param replaceExisting whether or not added components replace existing ones.
+	 */
+	async updateComponents<C extends Component>(
+		link: ExactLink,
+		components: (C | (new (...any: any) => Component))[],
+		replaceExisting = true
+	) {
+		const toAdd = [];
+		const toDelete = [];
+		for (const i of components) {
+			// Here we just check it the schemaId function exists on the type. If it does, then it
+			// is a component constructor.
+			if ((i as any).schemaId) {
+				toDelete.push(i);
+			} else {
+				toAdd.push(i);
+			}
+		}
+		// TODO: add RPC method for adding and deleting at the same time.
+		await this.del_components(link, toDelete as any);
+		await this.add_components(link, toAdd as any, replaceExisting);
+	}
+
 	async add_components<C extends Component>(
 		link: ExactLink,
 		components: C[],
-		replace_existing = true
+		replaceExisting = true
 	): Promise<Digest> {
 		let componentData = components.map((component) => {
 			return {
@@ -553,7 +596,7 @@ export class RpcClient {
 			AddComponents: {
 				link,
 				components: componentData,
-				replace_existing
+				replace_existing: replaceExisting
 			}
 		});
 		const respKind = this.#unwrap_resp(resp);

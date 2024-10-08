@@ -39,8 +39,8 @@
 	let richEditorEl: SvelteComponent;
 </script>
 
-<div {...attrs}>
-	<div class="absolute left-0 top-0 z-10 flex w-full flex-row gap-1">
+<div {...attrs} class="relative">
+	<div class="absolute -left-4 -top-4 z-10 flex w-full flex-row gap-1">
 		{#if maxLength != undefined}
 			<div
 				class="variant-filled badge transition-transform"

@@ -99,11 +99,11 @@
 			editingState.profile.username = `${value}@${env.PUBLIC_DOMAIN}`;
 		}
 	});
-	let editingLinksProxy = $state({
+	const editingLinksProxy = {
 		get value() {
 			return JSON.stringify(editingState.profile.links);
 		}
-	});
+	};
 
 	let avatarSrcOverride = $state(undefined) as string | undefined;
 
@@ -186,7 +186,7 @@
 					{:else}
 						<div style="grid-area: 1 / 1;">
 							<button
-								class="variant-filled badge absolute right-[-4em] top-[-1em] z-10"
+								class="variant-filled badge absolute right-[-4em] top-[-2em] z-10"
 								onclick={() => displayNameEditorEl.focus()}>Click to Edit!</button
 							>
 							<InlineTextEditor
@@ -264,7 +264,7 @@
 
 		<hr class="mb-4" />
 
-		<div class="flex flex-col gap-2">
+		<div class="flex flex-col gap-8">
 			<div class="prose relative mx-auto w-full max-w-2xl px-4 pt-4 dark:prose-invert">
 				{#if !editingState.editing}
 					{@html renderMarkdownSanitized(profile.bio || '')}
@@ -277,8 +277,7 @@
 			</div>
 			{#if profile.links.length > 0 || editingState.editing}
 				<div>
-					<h2 class="mb-4 text-center text-2xl font-bold">Links</h2>
-
+					<h2 class="mb-3 text-center text-2xl font-bold">Links</h2>
 					{#if !editingState.editing}
 						<ul class="flex flex-col items-center gap-2">
 							{#each profile.links as link}
@@ -292,6 +291,20 @@
 					{:else}
 						<LinksEditor bind:links={editingState.profile.links} />
 					{/if}
+				</div>
+			{/if}
+			{#if data.pages.length > 0}
+				<div>
+					<h2 class="mb-3 text-center text-2xl font-bold">Pages</h2>
+					<ul class="flex flex-col items-center gap-2">
+						{#each data.pages as p}
+							<li>
+								<a class="variant-ghost btn" href={`/${$page.params.username}/${p.slug}`}>
+									{p.name || p.slug}
+								</a>
+							</li>
+						{/each}
+					</ul>
 				</div>
 			{/if}
 			{#if profile.tags.length > 0 || editingState.editing}
@@ -314,14 +327,6 @@
 						{/each}
 					</span>
 				</div>
-			{/if}
-			{#if data.pages.length > 0}
-				<h3 class="mt-4 text-center text-2xl font-bold">Pages</h3>
-				{#each data.pages as p}
-					<a class="variant-ghost btn" href={`/${$page.params.username}/${p.slug}`}>
-						{p.name || p.slug}
-					</a>
-				{/each}
 			{/if}
 		</div>
 	</div>
